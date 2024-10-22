@@ -44,6 +44,24 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MousePos"",
+                    ""type"": ""Value"",
+                    ""id"": ""946e0f80-57d9-4518-99e4-0442d7f8a82a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""e0d8c5d7-b9c3-4a1c-8eaa-057a6ecf6d66"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +130,28 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
                     ""action"": ""New action1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56bc08c2-1ac1-434f-95dc-9a34dc306958"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16399473-6b9c-46ba-8f62-c383d819c240"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +162,8 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Newaction = m_Movement.FindAction("New action", throwIfNotFound: true);
         m_Movement_Newaction1 = m_Movement.FindAction("New action1", throwIfNotFound: true);
+        m_Movement_MousePos = m_Movement.FindAction("MousePos", throwIfNotFound: true);
+        m_Movement_Click = m_Movement.FindAction("Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,12 +227,16 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
     private readonly InputAction m_Movement_Newaction;
     private readonly InputAction m_Movement_Newaction1;
+    private readonly InputAction m_Movement_MousePos;
+    private readonly InputAction m_Movement_Click;
     public struct MovementActions
     {
         private @PlayerMovement m_Wrapper;
         public MovementActions(@PlayerMovement wrapper) { m_Wrapper = wrapper; }
         public InputAction @Newaction => m_Wrapper.m_Movement_Newaction;
         public InputAction @Newaction1 => m_Wrapper.m_Movement_Newaction1;
+        public InputAction @MousePos => m_Wrapper.m_Movement_MousePos;
+        public InputAction @Click => m_Wrapper.m_Movement_Click;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -206,6 +252,12 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             @Newaction1.started += instance.OnNewaction1;
             @Newaction1.performed += instance.OnNewaction1;
             @Newaction1.canceled += instance.OnNewaction1;
+            @MousePos.started += instance.OnMousePos;
+            @MousePos.performed += instance.OnMousePos;
+            @MousePos.canceled += instance.OnMousePos;
+            @Click.started += instance.OnClick;
+            @Click.performed += instance.OnClick;
+            @Click.canceled += instance.OnClick;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -216,6 +268,12 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             @Newaction1.started -= instance.OnNewaction1;
             @Newaction1.performed -= instance.OnNewaction1;
             @Newaction1.canceled -= instance.OnNewaction1;
+            @MousePos.started -= instance.OnMousePos;
+            @MousePos.performed -= instance.OnMousePos;
+            @MousePos.canceled -= instance.OnMousePos;
+            @Click.started -= instance.OnClick;
+            @Click.performed -= instance.OnClick;
+            @Click.canceled -= instance.OnClick;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -237,5 +295,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
     {
         void OnNewaction(InputAction.CallbackContext context);
         void OnNewaction1(InputAction.CallbackContext context);
+        void OnMousePos(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
 }
