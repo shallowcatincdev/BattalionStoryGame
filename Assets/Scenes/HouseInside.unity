@@ -1394,6 +1394,100 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+--- !u!1 &609664100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 609664102}
+  - component: {fileID: 609664101}
+  m_Layer: 0
+  m_Name: DoorLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!108 &609664101
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609664100}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 0
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 3.65
+  m_Range: 10
+  m_SpotAngle: 49
+  m_InnerSpotAngle: 9.2
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &609664102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609664100}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.063130006, y: -0, z: -0, w: 0.9980054}
+  m_LocalPosition: {x: 3.325, y: 3.784, z: -0.000000055307112}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 7.239, y: 0, z: 0}
 --- !u!1 &760206105
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,12 +2519,12 @@ GameObject:
   - component: {fileID: 1506263932}
   - component: {fileID: 1506263931}
   m_Layer: 0
-  m_Name: Spot Light (1)
+  m_Name: BeerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1506263931
 Light:
   m_ObjectHideFlags: 0
@@ -2443,7 +2537,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3.31
+  m_Intensity: 2.19
   m_Range: 10
   m_SpotAngle: 20.6
   m_InnerSpotAngle: 5.5
@@ -2501,13 +2595,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1506263930}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6183824, y: -0.27294686, z: 0.24254298, w: 0.6958995}
-  m_LocalPosition: {x: 0.931, y: 4.33, z: -0.085}
+  m_LocalRotation: {x: 0.5519992, y: -0.2940276, z: 0.21650605, w: 0.7496465}
+  m_LocalPosition: {x: 1.302, y: 4.27, z: -0.434}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 83.249, y: -42.832, z: 0}
+  m_LocalEulerAnglesHint: {x: 72.732, y: -42.832, z: 0}
 --- !u!1 &1583816430
 GameObject:
   m_ObjectHideFlags: 0
@@ -3464,12 +3558,12 @@ GameObject:
   - component: {fileID: 1961748825}
   - component: {fileID: 1961748824}
   m_Layer: 0
-  m_Name: Spot Light
+  m_Name: KitchenLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1961748824
 Light:
   m_ObjectHideFlags: 0
@@ -3850,4 +3944,5 @@ SceneRoots:
   - {fileID: 2024544441}
   - {fileID: 1208930923}
   - {fileID: 1961748825}
+  - {fileID: 609664102}
   - {fileID: 1506263932}
