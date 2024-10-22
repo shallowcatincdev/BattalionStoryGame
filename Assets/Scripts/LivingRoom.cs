@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+
 public class LivingRoom : MonoBehaviour
 {
     [SerializeField] GameObject opt1Light;
     [SerializeField] GameObject opt2Light;
     [SerializeField] GameObject opt3Light;
 
+    [SerializeField] Transform[] targets;
 
     int dialogPoint = 3; // tracks where in the story we are
 
@@ -30,7 +33,6 @@ public class LivingRoom : MonoBehaviour
         centerPos.x = mousePos.x - Screen.width / 2;
         centerPos.y = mousePos.y - Screen.height / 2;
 
-        Debug.Log(centerPos);
 
         posValid = false;
         var xFlip = false;
@@ -87,6 +89,8 @@ public class LivingRoom : MonoBehaviour
                 opt2Light.SetActive(false);
                 opt3Light.SetActive(false);
             }
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targets[option].rotation, 1 * Time.deltaTime);
         }
     }
 
