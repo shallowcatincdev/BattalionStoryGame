@@ -7,6 +7,7 @@ public class EnterCar : MonoBehaviour
 {
     public GameObject carText;
     public PickUpMilk milk;
+    public AudioSource click;
 
     void Start()
     {
@@ -24,11 +25,18 @@ public class EnterCar : MonoBehaviour
         }
         if (milk.gotMilk && Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene(3);
+            click.Play();
+            StartCoroutine(ChangeScene());
         }
     }
     void OnTriggerExit(Collider Player)
     {
         carText.SetActive(false);
+    }
+
+    IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(0.25f);
+        SceneManager.LoadScene(3);
     }
 }

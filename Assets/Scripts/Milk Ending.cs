@@ -29,6 +29,10 @@ public class MilkEnding : MonoBehaviour
     IEnumerator Pause()
     {
         yield return new WaitForSeconds(10f);
+        for (int i = 0; i < dialog.Length; i++)
+        {
+            dialog[i].SetActive(false);
+        }
         ending.SetActive(true);
         yield return new WaitForSeconds(2f);
         restartButton.SetActive(true);

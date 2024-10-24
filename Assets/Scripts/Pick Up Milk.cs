@@ -8,6 +8,7 @@ public class PickUpMilk : MonoBehaviour
     public GameObject milkText;
     public GameObject milk;
     public GameObject objectiveText;
+    public AudioSource click;
 
     public bool gotMilk = false;
     // Start is called before the first frame update
@@ -29,7 +30,8 @@ public class PickUpMilk : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            GameObject.Destroy(milk);
+            click.Play();
+            Destroy(milk);
             gotMilk = true;
             objectiveText.SetActive(true);
         }

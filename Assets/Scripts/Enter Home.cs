@@ -7,6 +7,7 @@ public class EnterHome : MonoBehaviour
 {
     public GameObject homeText;
     public PickUpMilk milk;
+    public AudioSource click;
 
     void Start()
     {
@@ -24,12 +25,19 @@ public class EnterHome : MonoBehaviour
         }
         if (milk.gotMilk && Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene(4);
+            click.Play();
+            StartCoroutine(ChangeScene());
         }
     }
 
     void onTriggerExit(Collider Player)
     {
         homeText.SetActive(false);
+    }
+
+    IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(0.25f);
+        SceneManager.LoadScene(4);
     }
 }
