@@ -4,6 +4,8 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 
@@ -20,6 +22,8 @@ public class LivingRoom : MonoBehaviour
     [SerializeField] TextMeshProUGUI narratorText;
     [SerializeField] GameObject optionPrompt;
     [SerializeField] TextMeshProUGUI optionText;
+
+    [SerializeField] GameObject fade;
 
     int[,] speaking = new int[,] { {0, 2, 0, 0, 0, 0, 0}, {1, 2, 1, 2, 1, 2, 0}, {2, 1, 0, 0, 0, 0, 0}, {1, 2, 0, 0, 0, 0, 0} };
 
@@ -73,8 +77,15 @@ public class LivingRoom : MonoBehaviour
     {
         delay++;
         // START
+
+
         if (dialogPoint == 0)
         {
+
+            var temp = fade.GetComponent<Image>().color;
+            temp.a -= 0.05f;
+            fade.GetComponent<Image>().color = temp;
+
             if (printing && dialog1[0].Length > charNum && delay % 2 == 0)
             { 
                 sentence += dialog1[0][charNum];
@@ -91,6 +102,8 @@ public class LivingRoom : MonoBehaviour
 
         if (dialogPoint == 1)
         {
+            
+
             if (printing && dialog1[1].Length > charNum && delay % 2 == 0)
             {
                 sentence += dialog1[1][charNum];
@@ -153,22 +166,16 @@ public class LivingRoom : MonoBehaviour
                 charNum = 0;
                 printing = false;
             }
+
+            var temp = fade.GetComponent<Image>().color;
+            temp.a += 0.05f;
+            fade.GetComponent<Image>().color = temp;
         }
 
         if (dialogPoint == 5)
         {
-            if (printing && dialog4[2].Length > charNum && delay % 2 == 0)
-            {
-                sentence += dialog4[2][charNum];
-                charNum++;
-                narratorText.text = sentence;
-            }
-            if (sentence == dialog4[2])
-            {
-                sentence = null;
-                charNum = 0;
-                printing = false;
-            }
+            printing = false;
+            SceneManager.LoadScene(2);
         }
 
         // BEER
@@ -219,6 +226,9 @@ public class LivingRoom : MonoBehaviour
                 charNum = 0;
                 printing = false;
             }
+            var temp = fade.GetComponent<Image>().color;
+            temp.a += 0.05f;
+            fade.GetComponent<Image>().color = temp;
         }
 
         // TALK
@@ -333,6 +343,9 @@ public class LivingRoom : MonoBehaviour
                 charNum = 0;
                 printing = false;
             }
+            var temp = fade.GetComponent<Image>().color;
+            temp.a += 0.05f;
+            fade.GetComponent<Image>().color = temp;
         }
     }
 
@@ -410,7 +423,12 @@ public class LivingRoom : MonoBehaviour
 
     void OnClick()
     {
-        if (!printing && (dialogPoint != 2 || option > 0))
+        if (dialogPoint == 8 ||  dialogPoint == 15)
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        else if (!printing && (dialogPoint != 2 || option > 0))
         {
             wifeText.text = null;
             responseText.text = null;
