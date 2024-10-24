@@ -30,6 +30,8 @@ public class CarEnding : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         ending.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         yield return new WaitForSeconds(2f);
         restartButton.SetActive(true);
     }
