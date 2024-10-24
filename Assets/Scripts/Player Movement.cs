@@ -28,16 +28,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             ""id"": ""dfbc75c7-6507-471d-89fa-4f2bbe0eb4fb"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""ae16822d-f0a2-425f-b705-0fb151f80bb3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""New action1"",
+                    ""name"": ""move"",
                     ""type"": ""Value"",
                     ""id"": ""f8bd1c09-c49c-4277-9f4c-eacf399de1a9"",
                     ""expectedControlType"": ""Vector2"",
@@ -66,68 +57,57 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""4a8358c3-2f03-457d-9398-3ded85c12d7c"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""2D Vector"",
+                    ""name"": ""WASD"",
                     ""id"": ""fbb94112-6de5-4a4f-ab5f-a029b6eff9c9"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action1"",
+                    ""action"": ""move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""Up"",
                     ""id"": ""7f033233-dc84-4822-b376-b363701f2388"",
-                    ""path"": ""<Keyboard>/#(W)"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action1"",
+                    ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""Down"",
                     ""id"": ""fe0719d9-f94e-484e-a139-f38e956dec38"",
-                    ""path"": ""<Keyboard>/#(S)"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action1"",
+                    ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""Left"",
                     ""id"": ""cae193ab-6e0f-4838-8892-5e889b1270a7"",
-                    ""path"": ""<Keyboard>/#(A)"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action1"",
+                    ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""Right"",
                     ""id"": ""37a53cc9-f043-44c1-9bc9-e21cad9a20b3"",
-                    ""path"": ""<Keyboard>/#(D)"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action1"",
+                    ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -160,8 +140,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
 }");
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
-        m_Movement_Newaction = m_Movement.FindAction("New action", throwIfNotFound: true);
-        m_Movement_Newaction1 = m_Movement.FindAction("New action1", throwIfNotFound: true);
+        m_Movement_move = m_Movement.FindAction("move", throwIfNotFound: true);
         m_Movement_MousePos = m_Movement.FindAction("MousePos", throwIfNotFound: true);
         m_Movement_Click = m_Movement.FindAction("Click", throwIfNotFound: true);
     }
@@ -225,16 +204,14 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
     // Movement
     private readonly InputActionMap m_Movement;
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
-    private readonly InputAction m_Movement_Newaction;
-    private readonly InputAction m_Movement_Newaction1;
+    private readonly InputAction m_Movement_move;
     private readonly InputAction m_Movement_MousePos;
     private readonly InputAction m_Movement_Click;
     public struct MovementActions
     {
         private @PlayerMovement m_Wrapper;
         public MovementActions(@PlayerMovement wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Movement_Newaction;
-        public InputAction @Newaction1 => m_Wrapper.m_Movement_Newaction1;
+        public InputAction @move => m_Wrapper.m_Movement_move;
         public InputAction @MousePos => m_Wrapper.m_Movement_MousePos;
         public InputAction @Click => m_Wrapper.m_Movement_Click;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
@@ -246,12 +223,9 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MovementActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MovementActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
-            @Newaction1.started += instance.OnNewaction1;
-            @Newaction1.performed += instance.OnNewaction1;
-            @Newaction1.canceled += instance.OnNewaction1;
+            @move.started += instance.OnMove;
+            @move.performed += instance.OnMove;
+            @move.canceled += instance.OnMove;
             @MousePos.started += instance.OnMousePos;
             @MousePos.performed += instance.OnMousePos;
             @MousePos.canceled += instance.OnMousePos;
@@ -262,12 +236,9 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IMovementActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
-            @Newaction1.started -= instance.OnNewaction1;
-            @Newaction1.performed -= instance.OnNewaction1;
-            @Newaction1.canceled -= instance.OnNewaction1;
+            @move.started -= instance.OnMove;
+            @move.performed -= instance.OnMove;
+            @move.canceled -= instance.OnMove;
             @MousePos.started -= instance.OnMousePos;
             @MousePos.performed -= instance.OnMousePos;
             @MousePos.canceled -= instance.OnMousePos;
@@ -293,8 +264,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
     public MovementActions @Movement => new MovementActions(this);
     public interface IMovementActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
-        void OnNewaction1(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
         void OnMousePos(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
     }
