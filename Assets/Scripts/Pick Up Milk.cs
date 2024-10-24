@@ -7,7 +7,6 @@ public class PickUpMilk : MonoBehaviour
 {
     public GameObject milkText;
     public GameObject milk;
-    public GameObject objectiveText;
     public AudioSource click;
 
     public bool gotMilk = false;
@@ -16,7 +15,6 @@ public class PickUpMilk : MonoBehaviour
     void Start()
     {
         milkText.SetActive(false);
-        objectiveText.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider Player)
@@ -40,7 +38,6 @@ public class PickUpMilk : MonoBehaviour
             click.Play();
             Destroy(milk);
             gotMilk = true;
-            objectiveText.SetActive(true);
         }
     }
 

@@ -15,7 +15,7 @@ public class EnterCar : MonoBehaviour
     {
         carText.SetActive(false);
     }
-    void OnTriggerStay(Collider Player)
+    void OnTriggerEnter(Collider Player)
     {
         colide = true;
         if (milk.gotMilk == true)

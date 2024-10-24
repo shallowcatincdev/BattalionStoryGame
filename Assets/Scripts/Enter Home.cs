@@ -38,7 +38,7 @@ public class EnterHome : MonoBehaviour
         }
     }
 
-    void onTriggerExit(Collider Player)
+    void OnTriggerExit(Collider Player)
     {
         colide = false;
         homeText.SetActive(false);

@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour
     public KeyCode jumpkey = KeyCode.Space;
     public float playerHeight;
     public LayerMask whatIsGround;
-    bool grounded;
+    public bool grounded;
     public Transform orientation;
     bool sprinting;
 
@@ -36,7 +36,21 @@ public class Movement : MonoBehaviour
     }
 
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 0 || collision.gameObject.layer == 12)
+        {
+            grounded = true;
+        }
+    }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.layer == 0 || collision.gameObject.layer == 12)
+        {
+            grounded = false;
+        }
+    }
 
     public void OnMove(InputValue value)
     {
@@ -74,7 +88,7 @@ public class Movement : MonoBehaviour
     }
     private void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        //grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);   // Does not work
         SpeedControl();
         if (grounded)
         {
