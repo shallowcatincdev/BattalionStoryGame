@@ -9,12 +9,15 @@ public class EnterCar : MonoBehaviour
     public PickUpMilk milk;
     public AudioSource click;
 
+    bool colide;
+
     void Start()
     {
         carText.SetActive(false);
     }
     void OnTriggerStay(Collider Player)
     {
+        colide = true;
         if (milk.gotMilk == true)
         {
             carText.SetActive(true);
@@ -23,14 +26,21 @@ public class EnterCar : MonoBehaviour
         {
             carText.SetActive(false);
         }
-        if (milk.gotMilk && Input.GetKeyDown(KeyCode.E))
+        
+    }
+
+    private void Update()
+    {
+        if (milk.gotMilk && Input.GetKeyDown(KeyCode.E) && colide)
         {
             click.Play();
             StartCoroutine(ChangeScene());
         }
     }
+
     void OnTriggerExit(Collider Player)
     {
+        colide = false;
         carText.SetActive(false);
     }
 

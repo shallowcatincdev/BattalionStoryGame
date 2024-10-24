@@ -11,6 +11,7 @@ public class PickUpMilk : MonoBehaviour
     public AudioSource click;
 
     public bool gotMilk = false;
+    bool milkColide;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +19,9 @@ public class PickUpMilk : MonoBehaviour
         objectiveText.SetActive(false);
     }
 
-    private void OnTriggerStay(Collider Player)
+    private void OnTriggerEnter(Collider Player)
     {
+        milkColide = true;
         if (gotMilk == false)
         {
             milkText.SetActive(true);
@@ -28,7 +30,12 @@ public class PickUpMilk : MonoBehaviour
         {
             milkText.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && milkColide)
         {
             click.Play();
             Destroy(milk);
@@ -39,6 +46,7 @@ public class PickUpMilk : MonoBehaviour
 
     void OnTriggerExit(Collider Player)
     {
+        milkColide = false;
         milkText.SetActive(false);
     }
 }

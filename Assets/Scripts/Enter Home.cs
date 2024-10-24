@@ -9,12 +9,15 @@ public class EnterHome : MonoBehaviour
     public PickUpMilk milk;
     public AudioSource click;
 
+    bool colide;
+
     void Start()
     {
         homeText.SetActive(false);
     }
-    void OnTriggerStay(Collider Player)
+    void OnTriggerEnter(Collider Player)
     {
+        colide = true;
         if (milk.gotMilk == true)
         {
             homeText.SetActive(true);
@@ -23,7 +26,12 @@ public class EnterHome : MonoBehaviour
         {
             homeText.SetActive(false);
         }
-        if (milk.gotMilk && Input.GetKeyDown(KeyCode.E))
+        
+    }
+
+    private void Update()
+    {
+        if (milk.gotMilk && Input.GetKeyDown(KeyCode.E) && colide)
         {
             click.Play();
             StartCoroutine(ChangeScene());
@@ -32,6 +40,7 @@ public class EnterHome : MonoBehaviour
 
     void onTriggerExit(Collider Player)
     {
+        colide = false;
         homeText.SetActive(false);
     }
 
