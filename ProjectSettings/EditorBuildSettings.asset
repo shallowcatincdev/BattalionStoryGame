@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Car Ending.unity
+    guid: 39b179bd5988f9247b9622e1af8094cb
+  - enabled: 1
+    path: Assets/Scenes/Milk Ending.unity
+    guid: 7ff665b73b77d9042bbd0dafa2b583f6
   m_configObjects: {}
