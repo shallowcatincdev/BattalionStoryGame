@@ -18,7 +18,7 @@ public class CarEnding : MonoBehaviour
     
     void Update()
     {
-        car.transform.Translate(Vector3.forward * 0.25f);
+        car.transform.Translate(Vector3.forward * 1.0f);
     }
 
     private void FixedUpdate()
