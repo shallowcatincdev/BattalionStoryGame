@@ -34,7 +34,7 @@ public class MilkEnding : MonoBehaviour
             dialog[i].SetActive(false);
         }
         ending.SetActive(true);
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         yield return new WaitForSeconds(2f);
         restartButton.SetActive(true);
