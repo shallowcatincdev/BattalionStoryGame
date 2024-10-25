@@ -14,8 +14,8 @@ public class NarratorScene2 : MonoBehaviour
     string[] dialog = new string[] 
     {
         "You leave the house heading across the street to the big red store to get milk.",
-        "After colecting the milk you head back home, not questioning the fact that you havent paid for the milk. No ones here to stop you any way.",
-        "As you aproch the house you see your car parked on the side of the road, you have this feeling from it, this feeling of freedom. Do you fall for the temptation?"
+        "After collecting the milk, you head back home, not questioning the fact that you haven't paid for it. No one is here to stop you, anyway.",
+        "As you aproch the house you see your car parked on the side of the road, you get this feeling from it, this feeling of freedom. Do you fall for the temptation?"
     };
     string sentence;
     int charNum;
